@@ -1,4 +1,4 @@
-# Todo App ReactJS and FakeJson
+# Todo App ReactJS and JSON Server
 
 ![alt text](To-Do-App/Screenshot_1.png "Screenshot 1")
 
