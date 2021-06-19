@@ -11,29 +11,36 @@ const Tasks = ({list, onEditTitle, onAddTask, withoutEmpty, onRemoveTask, onEdit
 
     const editTitle = () => {
         const newTitle = window.prompt('List name', list.name);
-        if(newTitle) {
+        if (newTitle) {
             onEditTitle(list.id, newTitle);
             axios.patch('http://localhost:3001/lists/' + list.id, {
                 name: newTitle
-            }).catch(() => {
-                alert('Error');
-            });
+            })
+                .catch(() => {
+                    alert('Error');
+                });
         }
     }
 
     return (
         <div className="tasks">
             <Link to={`/lists/${list.id}`}>
-            <h2 style={{color: list.color.hex}} className={"tasks__title"}>
-                {list.name}
-                <img onClick={editTitle} src={editIcon} alt={'Edit icon'}/>
-            </h2>
+                <h2 style={{color: list.color.hex}} className={"tasks__title"}>
+                    {list.name}
+                    <img onClick={editTitle} src={editIcon} alt={'Edit icon'}/>
+                </h2>
             </Link>
 
             <div className="tasks__items">
                 {!withoutEmpty && list.tasks && !list.tasks.length && <h2>Tasks not found</h2>}
                 {list.tasks && list.tasks.map(task => (
-                    <Task key={task.id} list={list} onRemove={onRemoveTask} onEdit={onEditTask} onCompleteTask={onCompleteTask} {...task}/>
+                    <Task key={task.id}
+                          list={list}
+                          onRemove={onRemoveTask}
+                          onEdit={onEditTask}
+                          onCompleteTask={onCompleteTask}
+                          {...task}
+                    />
                 ))}
                 <AddTaskForm key={list.id} list={list} onAddTask={onAddTask}/>
             </div>

@@ -17,14 +17,17 @@ const AddTaskForm = ({list, onAddTask}) => {
             completed: false
         };
         setIsLoading(true);
-        axios.post('http://localhost:3001/tasks', obj).then(({data}) =>{
-            onAddTask(list.id, data);
-            toggleFormVisible();
-        }).catch(() => {
-            alert('Error');
-        }).finally(() => {
-            setIsLoading(false);
-        });
+        axios.post('http://localhost:3001/tasks', obj)
+            .then(({data}) => {
+                onAddTask(list.id, data);
+                toggleFormVisible();
+            })
+            .catch(() => {
+                alert('Error');
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }
     return (
         <div className="tasks__form">
@@ -40,7 +43,8 @@ const AddTaskForm = ({list, onAddTask}) => {
                            value={inputValue}
                            onChange={(e) => setInputValue(e.target.value)}
                            placeholder={"Task name"}/>
-                    <button disabled={isLoading} onClick={addTask} className={"button"}>{isLoading ? 'Adding' : 'Add task'}</button>
+                    <button disabled={isLoading} onClick={addTask}
+                            className={"button"}>{isLoading ? 'Adding' : 'Add task'}</button>
                     <button onClick={toggleFormVisible} className={"button button--gray"}>Close</button>
                 </div>}
         </div>

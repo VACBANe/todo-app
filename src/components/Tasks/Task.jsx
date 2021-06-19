@@ -1,7 +1,5 @@
-
 import editIcon from './../../assets/icons/edit.svg';
 import deleteIcon from './../../assets/icons/remove.svg';
-
 
 
 const Task = ({id, list, text, completed, onRemove, onEdit, onCompleteTask}) => {

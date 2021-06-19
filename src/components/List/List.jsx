@@ -14,6 +14,7 @@ const List = ({items, isRemovable, onClick, onRemove, onClickItem, activeItem}) 
             });
         }
     }
+
     return (
         <ul onClick={onClick} className="list">
             {
@@ -26,8 +27,10 @@ const List = ({items, isRemovable, onClick, onRemove, onClickItem, activeItem}) 
                     >
                         <i>{item.icon ? <img src={item.icon} alt="Icon"/>
                             : <Badge color={item.color.name}/>}</i>
-                        <span>{item.name}{ item.tasks && ` (${item.tasks.length})`}</span>
-                        {isRemovable && <img className={'list__remove-icon'} onClick={() => removeList(item)} src={removeIcon} alt={'removeIcon'}/>}
+                        <span>{item.name}{item.tasks && ` (${item.tasks.length})`}</span>
+                        {isRemovable &&
+                        <img className={'list__remove-icon'} onClick={() => removeList(item)} src={removeIcon}
+                             alt={'removeIcon'}/>}
                     </li>))
             }
         </ul>

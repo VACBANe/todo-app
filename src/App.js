@@ -13,13 +13,23 @@ function App() {
     let location = useLocation();
 
     useEffect(() => {
-        axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks').then(({data}) => {
-            setLists(data);
-        });
-        axios.get('http://localhost:3001/colors').then(({data}) => {
-            setColors(data);
-        });
+        axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks')
+            .then(({data}) => {
+                setLists(data);
+            });
+        axios.get('http://localhost:3001/colors')
+            .then(({data}) => {
+                setColors(data);
+            });
     }, []);
+
+    useEffect(() => {
+        const listId = history.location.pathname.split('lists/')[1];
+        if (lists) {
+            const list = lists.find(list => list.id === Number(listId));
+            setActiveItem(list);
+        }
+    }, [lists, history.location.pathname]);
 
     const onAddList = (obj) => {
         const newList = [...lists, obj];
@@ -39,7 +49,7 @@ function App() {
             return item;
         });
         setLists(newList);
-    }
+    };
 
     const onAddTask = (listId, taskObj) => {
         const newList = lists.map(item => {
@@ -49,7 +59,8 @@ function App() {
             return item;
         });
         setLists(newList);
-    }
+    };
+
     const onRemoveTask = (listId, taskId) => {
         if (window.confirm("Delete this task?")) {
             const newList = lists.map(item => {
@@ -59,11 +70,12 @@ function App() {
                 return item;
             });
             setLists(newList);
-            axios.delete('http://localhost:3001/tasks/' + taskId).catch(() => {
-                alert('Error');
-            });
+            axios.delete('http://localhost:3001/tasks/' + taskId)
+                .catch(() => {
+                    alert('Error');
+                });
         }
-    }
+    };
 
     const onEditTask = (listId, taskObj) => {
         const newTaskText = window.prompt('Task name', taskObj.text);
@@ -82,10 +94,12 @@ function App() {
             return list;
         });
         setLists(newList);
-        axios.patch('http://localhost:3001/tasks/' + taskObj.id, {text: newTaskText}).catch(() => {
-            alert('Error');
-        });
-    }
+        axios.patch('http://localhost:3001/tasks/' + taskObj.id, {text: newTaskText})
+            .catch(() => {
+                alert('Error');
+            });
+    };
+
     const onCompleteTask = (listId, taskId, completed) => {
         const newList = lists.map(list => {
             if (list.id === listId) {
@@ -99,18 +113,11 @@ function App() {
             return list;
         });
         setLists(newList);
-        axios.patch('http://localhost:3001/tasks/' + taskId, {completed}).catch(() => {
-            alert('Error');
-        });
-    }
-
-    useEffect(() => {
-        const listId = history.location.pathname.split('lists/')[1];
-        if (lists) {
-            const list = lists.find(list => list.id === Number(listId));
-            setActiveItem(list);
-        }
-    }, [lists, history.location.pathname]);
+        axios.patch('http://localhost:3001/tasks/' + taskId, {completed})
+            .catch(() => {
+                alert('Error');
+            });
+    };
 
     return (
         <div className={"container"}>

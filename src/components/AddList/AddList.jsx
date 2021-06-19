@@ -15,7 +15,7 @@ const AddList = ({colors, onAdd}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if(Array.isArray(colors)) {
+        if (Array.isArray(colors)) {
             setColor(colors[0].id);
         }
     }, [colors]);
@@ -27,21 +27,22 @@ const AddList = ({colors, onAdd}) => {
     }
 
     const addList = () => {
-        if(!inputValue) {
+        if (!inputValue) {
             alert('Input is empty');
             return;
         }
         setIsLoading(true);
-        axios.post('http://localhost:3001/lists', {"name": inputValue, colorId: selectedColor}
-        ).then(({data}) => {
-            const color = colors.filter(c => c.id === selectedColor)[0];
-            const listObj = {...data, color, tasks: []}
-            onAdd(listObj);
-            setIsLoading(false);
-            onClose();
-        }).finally(() => {
-            setIsLoading(false);
-        });
+        axios.post('http://localhost:3001/lists', {"name": inputValue, colorId: selectedColor})
+            .then(({data}) => {
+                const color = colors.filter(c => c.id === selectedColor)[0];
+                const listObj = {...data, color, tasks: []}
+                onAdd(listObj);
+                setIsLoading(false);
+                onClose();
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }
 
     return (
@@ -62,7 +63,6 @@ const AddList = ({colors, onAdd}) => {
                          alt={"Close button"}
                          onClick={onClose}
                          className="add-list__form-close"/>
-
                     <input className={"field"}
                            type={"text"}
                            value={inputValue}
@@ -81,7 +81,7 @@ const AddList = ({colors, onAdd}) => {
                         }
                     </div>
                     <button className={"button"} onClick={addList}>
-                        {isLoading? 'Adding' : 'Add'}
+                        {isLoading ? 'Adding' : 'Add'}
                     </button>
                 </div>
             )}

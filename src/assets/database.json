@@ -4,30 +4,14 @@
       "name": "TestList",
       "colorId": 1,
       "id": 1
-    },
-    {
-      "name": "Test List2",
-      "colorId": 5,
-      "id": 2
-    },
-    {
-      "name": "Test List 3",
-      "colorId": 8,
-      "id": 3
     }
   ],
   "tasks": [
     {
       "listId": 1,
       "text": "ToDo app",
-      "completed": false,
+      "completed": true,
       "id": 1
-    },
-    {
-      "listId": 2,
-      "text": "Ok",
-      "completed": false,
-      "id": 3
     }
   ],
   "colors": [
