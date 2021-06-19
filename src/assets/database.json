@@ -1,0 +1,75 @@
+{
+  "lists": [
+    {
+      "name": "TestList",
+      "colorId": 1,
+      "id": 1
+    },
+    {
+      "name": "Test List2",
+      "colorId": 5,
+      "id": 2
+    },
+    {
+      "name": "Test List 3",
+      "colorId": 8,
+      "id": 3
+    }
+  ],
+  "tasks": [
+    {
+      "listId": 1,
+      "text": "ToDo app",
+      "completed": false,
+      "id": 1
+    },
+    {
+      "listId": 2,
+      "text": "Ok",
+      "completed": false,
+      "id": 3
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "hex": "#C9D1D3",
+      "name": "grey"
+    },
+    {
+      "id": 2,
+      "hex": "#05AF3E",
+      "name": "green"
+    },
+    {
+      "id": 3,
+      "hex": "#64C4ED",
+      "name": "blue"
+    },
+    {
+      "id": 4,
+      "hex": "#FFBBCC",
+      "name": "pink"
+    },
+    {
+      "id": 5,
+      "hex": "#B6E6BD",
+      "name": "lime"
+    },
+    {
+      "id": 6,
+      "hex": "#C355F5",
+      "name": "purple"
+    },
+    {
+      "id": 7,
+      "hex": "#110133",
+      "name": "black"
+    },
+    {
+      "id": 8,
+      "hex": "#FF6464",
+      "name": "red"
+    }
+  ]
+}
